@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        th {
+            text-align: right;
+        }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .error {
+            position: absolute;
+            top: 50%;
+            left: 60%;
+        }
+        .reg{
+            position: absolute;
+            top: 65%;
+            left: 45%;
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <table class="center">
+            <tr>
+                <th colspan="2">
+                    <center><h3>Login Page</h3></center><hr>
+                </th>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="email" name="Email" placeholder="email" required></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input type="password" name="password" placeholder="password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center><input type="submit" value="Login"></center>
+                </td>
+            </tr>
+        </table>
+        <div class="reg">
+        <center><a href="{% url 'register' %}" class="btn button">Create A New Account</a></center>
+        </div>
+    </form>
+    <div class="error">
+        {% for message in messages %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -3,13 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>Home</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        th {
+            text-align: right;
+        }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
-
-<h1>
-    Welcome to the django application
-</h1>
-
+    {% block content %}
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            <table class="center">
+                <tr>
+                    <th colspan="2">
+                        <center><h3>Registration</h3></center><hr>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Firstname</th>
+                    <td><input type="text" name="Firstname" required></td>
+                </tr>
+                <tr>
+                    <th>Lastname</th>
+                    <td><input type="text" name="Lastname" required></td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td><input type="password" name="password" required></td>
+                </tr>
+                <tr>
+                    <th>PhoneNumber</th>
+                    <td><input type="tel" name="PhoneNumber" required></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="email" name="Email" required></td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>
+                        <select name="Gender" required>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <center><input type="submit" value="Submit"></center>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    {% endblock %}
 </body>
 </html>
